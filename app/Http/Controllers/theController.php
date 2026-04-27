@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\logInAuth;
+use Illuminate\Support\Facades\Hash;
 
 class theController extends Controller
 {
@@ -16,8 +18,8 @@ class theController extends Controller
     }
 
     public function validator(){
-        $corEmail = 'admin@gmail.com';
-        $corPass = '123456';
+        // $corEmail = 'admin@gmail.com';
+        // $corPass = '123456';
 
         request()->validate([
             'email' => 'required|email',
@@ -27,7 +29,9 @@ class theController extends Controller
         $email = request('email');
         $password = request('password');
 
-        if($email == $corEmail && $password == $corPass){
+        $user = logInAuth::where('email', $email)->firzst();
+
+        if($user && Hash::check($password, $user->password)){
         session()->push('logIn',[
             'email' => request('email'), 
             'password' => request('password')]);
@@ -51,6 +55,7 @@ class theController extends Controller
         
         return view('home', [
             'email' => $data['email'] ?? 'Guest',
+            'password' => $data['password'] ?? 'Guest',
             'message' => 'Login Successful!'
         ]);
     }
