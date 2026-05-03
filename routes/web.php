@@ -8,3 +8,5 @@ Route::get('/', [theController::class, 'sessioner']);
 Route::post('/logIn', [theController::class, 'validator']);
 Route::get('/del', [theController::class, 'sessionCleaner']);
 Route::get('/home', [theController::class, 'homePage']);
+Route::get('/signUp', [theController::class, 'signUpPage']);
+Route::post('/signUp', [theController::class, 'signUpStore']);

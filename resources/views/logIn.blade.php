@@ -5,10 +5,10 @@
         <div class='text-white font-bold text-[30px]'>
             <h1>Hello there!!</h1>
         </div>
-        <div class=''>
+        <div class="justify-center items-center">
             <div>
                 <!--pwede rasad nga type kay email and butngag required both pero letsdo the laravel way-->
-                <input  value="{{ old('email') }}" type="text" name="email" id="email" placeholder='Email Address' class='bg-white px-10 py-4 text-lg rounded-[20px] text-[1rem] mb-1 mt-4 focus:outline-none focus:placeholder-transparent'>
+                <input value="{{ old('email') }}" type="text" name="email" id="email" placeholder='Email Address' class='bg-white px-10 py-4 text-lg rounded-[20px] text-[1rem] mb-1 mt-4 focus:outline-none focus:placeholder-transparent'>
 
             </div>
             <div>
@@ -16,6 +16,9 @@
             </div>
             <div class='flex items-center justify-center'>
                 <button type="submit" class='py-2 px-7 rounded-[10px] bg-cyan-500 hover:bg-blue-200'>Log In</button>
+            </div>
+            <div class="p-2 m-1">
+                <p class=" text-white"><i>Not yet registered? <span><a href="/signUp" class="text-blue-500">Sign up</a></span> here!</i></p>
             </div>
         </div>
         <div class='mt-2 flex flex-col items-center justify-center'>
@@ -33,6 +36,5 @@
             </div>
         </div>
 </form>
-
 </body>
 </x-layout>

@@ -23,13 +23,13 @@ class theController extends Controller
 
         request()->validate([
             'email' => 'required|email',
-            'password' => 'required|min:6',
+            'password' => 'required|min:8',
         ]);
 
         $email = request('email');
         $password = request('password');
 
-        $user = logInAuth::where('email', $email)->firzst();
+        $user = logInAuth::where('email', $email)->first();
 
         if($user && Hash::check($password, $user->password)){
         session()->push('logIn',[
@@ -59,4 +59,22 @@ class theController extends Controller
             'message' => 'Login Successful!'
         ]);
     }
+
+public function signUpPage(){
+    return view('signUp');
+}
+
+public function signUpStore(){
+    request()->validate([
+        'email'    => 'required|email|unique:log_in_auth,email', 
+        'password' => 'required|min:8|confirmed',              
+    ]);
+
+    logInAuth::create([
+        'email'    => request('email'),
+        'password' => Hash::make(request('password')),         
+    ]);
+
+    return redirect('/')->with('success', 'Account created! Please log in.');
+}
 }
